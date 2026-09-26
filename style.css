@@ -1,0 +1,324 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #090909;
+  --card: #111;
+  --text: #eee;
+  --muted: #888;
+  --accent: #9d1111;
+  --accent-dark: #3b0808;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, #191919 0%, #080808 70%);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: min(460px, 92vw);
+  padding: 42px 36px;
+  text-align: center;
+  background: linear-gradient(145deg, rgba(25,25,25,.98), rgba(9,9,9,.98));
+  border: 1px solid #333;
+  box-shadow: 0 20px 80px rgba(0,0,0,.7);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #777;
+  font: 700 12px/1 Arial, sans-serif;
+  letter-spacing: 4px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(44px, 9vw, 72px);
+  font-weight: normal;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 12px 0 34px;
+  font-size: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 9px;
+  color: #aaa;
+  text-align: left;
+  font: 13px Arial, sans-serif;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+input {
+  min-width: 0;
+  flex: 1;
+  padding: 15px;
+  border: 1px solid #333;
+  outline: none;
+  background: #050505;
+  color: white;
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: #666;
+}
+
+button {
+  padding: 0 18px;
+  border: 0;
+  cursor: pointer;
+  background: #ddd;
+  color: #080808;
+  font-weight: 700;
+  transition: .2s;
+}
+
+button:hover {
+  background: white;
+  transform: translateY(-1px);
+}
+
+.message {
+  min-height: 22px;
+  margin: 18px 0 8px;
+  color: #c9c9c9;
+  font-size: 14px;
+}
+
+.attempts {
+  margin: 0;
+  color: #555;
+  font: 11px Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* CENA DA PORTA */
+
+.door-scene {
+  min-height: 100vh;
+  position: relative;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 50% 55%, #222 0%, #0b0b0b 48%, #030303 100%);
+}
+
+.room {
+  width: min(520px, 80vw);
+  text-align: center;
+}
+
+.door-frame {
+  position: relative;
+  width: min(330px, 62vw);
+  height: min(520px, 76vh);
+  margin: auto;
+  padding: 18px;
+  background: #242424;
+  box-shadow:
+    0 0 0 5px #0b0b0b,
+    0 25px 100px rgba(0,0,0,.9);
+}
+
+.door {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(90deg, #090909, #292929 48%, #0b0b0b);
+  border: 3px solid #080808;
+  transform-origin: left center;
+  transition: transform 2s cubic-bezier(.2,.8,.2,1);
+  z-index: 2;
+}
+
+.door.open {
+  transform: perspective(900px) rotateY(-105deg);
+}
+
+.door-panel {
+  position: absolute;
+  left: 14%;
+  width: 72%;
+  border: 3px solid #090909;
+  background: rgba(255,255,255,.025);
+}
+
+.panel-top {
+  top: 10%;
+  height: 30%;
+}
+
+.panel-bottom {
+  bottom: 10%;
+  height: 38%;
+}
+
+.knob {
+  position: absolute;
+  right: 11%;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #aaa;
+  box-shadow: 0 0 10px #000;
+}
+
+.darkness {
+  position: absolute;
+  inset: 18px;
+  background: #000;
+  z-index: 1;
+}
+
+#door-message {
+  margin-top: 25px;
+  color: #aaa;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+/* SANGUE */
+
+#blood-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.blood-drop {
+  position: absolute;
+  top: -80px;
+  width: var(--w);
+  height: var(--h);
+  background: linear-gradient(#8d0000, #3e0000);
+  border-radius: 50% 50% 45% 45%;
+  box-shadow: 0 0 8px rgba(120,0,0,.5);
+  animation: drip var(--duration) cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+.blood-drop::after {
+  content: "";
+  position: absolute;
+  left: 35%;
+  top: 75%;
+  width: 30%;
+  height: 90%;
+  background: #5d0000;
+  border-radius: 50%;
+}
+
+@keyframes drip {
+  0% {
+    transform: translateY(-100px) scale(.7);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) scale(1);
+    opacity: .95;
+  }
+}
+
+body.blood-mode {
+  animation: shake .09s infinite;
+}
+
+body.blood-mode::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  background: radial-gradient(circle, transparent 35%, rgba(90,0,0,.55) 100%);
+  animation: pulse-red .8s infinite alternate;
+}
+
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(2px, -1px); }
+  50% { transform: translate(-2px, 1px); }
+  75% { transform: translate(1px, 2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes pulse-red {
+  from { opacity: .35; }
+  to { opacity: .75; }
+}
+
+.jumpscare {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.25);
+  pointer-events: none;
+}
+
+.jumpscare p {
+  margin: 0;
+  padding: 20px;
+  color: #ddd;
+  font: 700 clamp(20px, 5vw, 48px)/1.1 Arial, sans-serif;
+  text-align: center;
+  letter-spacing: 3px;
+  text-shadow: 0 0 18px #700;
+  animation: flash-text .5s infinite alternate;
+}
+
+@keyframes flash-text {
+  from { opacity: .45; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 520px) {
+  .card {
+    padding: 34px 22px;
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+
+  button {
+    height: 48px;
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Porta</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="blood-layer" aria-hidden="true"></div>
+
+  <main class="screen" id="login-screen">
+    <section class="card">
+      <p class="eyebrow">ACESSO RESTRITO</p>
+      <h1>A Porta</h1>
+      <p class="subtitle">Existe algo esperando do outro lado.</p>
+
+      <form id="password-form">
+        <label for="password">Digite a senha</label>
+        <div class="input-row">
+          <input id="password" type="password" autocomplete="off" placeholder="••••••••">
+          <button type="submit">ENTRAR</button>
+        </div>
+      </form>
+
+      <p id="message" class="message"></p>
+      <p class="attempts" id="attempts">Tentativas: 0/3</p>
+    </section>
+  </main>
+
+  <main class="door-scene hidden" id="door-scene">
+    <div class="room">
+      <div class="door-frame">
+        <div class="door" id="door">
+          <div class="door-panel panel-top"></div>
+          <div class="door-panel panel-bottom"></div>
+          <div class="knob"></div>
+        </div>
+        <div class="darkness"></div>
+      </div>
+      <p id="door-message">A porta está fechada.</p>
+    </div>
+  </main>
+
+  <div class="jumpscare hidden" id="jumpscare">
+    <p>VOCÊ NÃO DEVERIA TER ERRADO.</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
